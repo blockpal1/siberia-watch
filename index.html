@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siberia plague watch</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --surface: #1a2332;
+    --surface2: #243044;
+    --border: #2d3a4f;
+    --text: #e8eef6;
+    --muted: #8b9bb4;
+    --accent: #5b9fd4;
+    --green: #3dba7e;
+    --amber: #e0a84a;
+    --red: #e07070;
+    --low: #3dba7e;
+    --mono: "SF Mono", "Menlo", "Consolas", ui-monospace, monospace;
+    --sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 15px; }
+  body {
+    margin: 0;
+    padding: 2rem 1.5rem 3rem;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+  header h1 {
+    margin: 0 0 0.35rem;
+    font-size: 1.65rem;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  header .meta {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  header .meta strong { color: var(--text); font-weight: 550; }
+  .grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  @media (min-width: 900px) {
+    .grid.summary { grid-template-columns: 1fr 1fr; }
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.35rem;
+  }
+  .card h2 {
+    margin: 0 0 0.15rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  .card .purpose {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+  }
+  .badge.new { background: rgba(61,186,126,0.18); color: var(--green); border: 1px solid rgba(61,186,126,0.35); }
+  .badge.flat { background: rgba(91,159,212,0.15); color: var(--accent); border: 1px solid rgba(91,159,212,0.3); }
+  .badge.watch { background: rgba(139,155,180,0.12); color: var(--muted); border: 1px solid var(--border); }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 520px) {
+    .kpi-row { grid-template-columns: repeat(4, 1fr); }
+  }
+  .kpi {
+    background: var(--surface2);
+    border-radius: 8px;
+    padding: 0.7rem 0.8rem;
+  }
+  .kpi .label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+  }
+  .kpi .value {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .kpi .value.low { color: var(--low); }
+  .kpi .sub {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+  .facts dt { color: var(--muted); }
+  .facts dd { margin: 0; font-weight: 500; }
+  .section-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    margin: 1.25rem 0 0.5rem;
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th {
+    color: var(--muted);
+    font-weight: 550;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td.num, th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+  tr.new-low td { background: rgba(61,186,126,0.08); }
+  tr.new-low td.num { color: var(--green); font-weight: 600; }
+  .note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+  }
+  .note a { color: var(--accent); }
+  .screens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .screens a {
+    color: var(--accent);
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+  .screens a:hover { text-decoration: underline; }
+  footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+  footer code {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    background: var(--surface);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+  }
+  @media print {
+    :root {
+      --bg: #fff;
+      --surface: #fff;
+      --surface2: #f4f6f9;
+      --border: #ccd3de;
+      --text: #1a1f2a;
+      --muted: #5a6578;
+      --accent: #1a6bb5;
+      --green: #1a7a4c;
+    }
+    body { padding: 0.75rem; background: #fff; color: #1a1f2a; }
+    .card { break-inside: avoid; box-shadow: none; }
+    a { color: #1a6bb5; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Siberia plague watch</h1>
+      <p class="sub">Shelekhov / Irkutsk region · public reporting only · not a case bulletin</p>
+      <p>As of <strong>Sat Oct 3, 2026</strong> (ET)</p>
+    </header>
+
+    <section class="card" id="siberia">
+      <h2>Irkutsk region
+        <span class="badge flat">WATCH</span>
+      </h2>
+      <p class="purpose">Lab-linked index only · contacts under observation · no confirmed secondary case</p>
+
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="label">Level</div>
+          <div class="value">WATCH</div>
+          <div class="sub">locked rules · 2026-10-03</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Confirmed cases</div>
+          <div class="value">1</div>
+          <div class="sub">index lab worker · secondary 0</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Deaths</div>
+          <div class="value">1</div>
+          <div class="sub">index lab worker</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Contacts observed</div>
+          <div class="value">~189–200</div>
+          <div class="sub">hospitalized or isolated</div>
+        </div>
+      </div>
+
+      <dl class="facts">
+        <dt>As of</dt><dd>2026-10-03</dd>
+        <dt>Generation</dt><dd>Index only. No confirmed secondary or community transmission.</dd>
+        <dt>Death date</dt><dd>Outlets split Oct 1 vs the night of Oct 2.</dd>
+        <dt>Form reported</dt><dd>Some outlets describe pneumonic plague. Officials have also said only “plague” or “particularly dangerous infection.”</dd>
+        <dt>Exposure</dt><dd>Reported lab-linked exposure around Sep 25, 2026, at the Irkutsk Anti-Plague Institute. Index described as a lab worker.</dd>
+        <dt>Contacts</dt><dd>About 189 hospitalized or isolated in a local report, up to nearly 200 under observation (Moscow Times, Oct 2). The Irkutsk governor, via that report, said contacts showed no signs of illness and lab tests were negative. Some local copy says some contacts felt unwell. That is not a confirmed infection.</dd>
+        <dt>Geography</dt><dd>Shelekhov hospital quarantined. Irkutsk public events reportedly canceled. The neighboring Buryatia governor commented. No Buryatia cases found.</dd>
+        <dt>Official bulletins</dt><dd>No WHO or CDC statement found on this event. Rospotrebnadzor is named in governor comments. No case bulletin retrieved.</dd>
+      </dl>
+
+      <p class="note">Level rules, locked 2026-10-03. WATCH: lab-linked index only, contacts isolated, no confirmed secondary case. ELEVATED: a confirmed secondary case, a test-positive symptomatic contact, a new city outside the ring, an export case, official ongoing person-to-person pneumonic spread, or credible treatment failure. THRESHOLD: cases outside the traced ring and (a second country or an unlinked major city, or rising confirmed cases for 3 or more days, or a WHO PHEIC, or community chains past one generation).</p>
+    </section>
+  </div>
+  <footer>
+    <p>Compiled 2026-10-03 from public reporting: Moscow Times (2026-10-02), Newsweek, Al Arabiya (2026-10-03), REN TV (2026-10-02), bv02.info (2026-10-03). Not a medical or official bulletin. Re-check primary sources before acting on it.</p>
+  </footer>
+</body>
+</html>
