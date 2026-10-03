@@ -187,6 +187,16 @@
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
   }
+  @media (max-width: 519px) {
+    body { padding: 1.1rem 0.9rem 2rem; }
+    header h1 { font-size: 1.4rem; }
+    .card { padding: 1rem 0.95rem; }
+    .facts { grid-template-columns: 1fr; gap: 0.1rem 0; }
+    .facts dt { margin-top: 0.7rem; }
+    .kpi .value { font-size: 1rem; }
+    .badge { margin: 0.35rem 0 0; display: inline-block; }
+  }
+  .wrap, .card, .kpi, .facts dt, .facts dd, .note, footer { min-width: 0; overflow-wrap: break-word; }
   @media print {
     :root {
       --bg: #fff;
