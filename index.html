@@ -43,19 +43,7 @@
     font-weight: 650;
     letter-spacing: -0.02em;
   }
-  header .meta {
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-  header .meta strong { color: var(--text); font-weight: 550; }
   header .sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.5rem; }
-  .grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-  @media (min-width: 900px) {
-    .grid.summary { grid-template-columns: 1fr 1fr; }
-  }
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -83,9 +71,7 @@
     vertical-align: middle;
     margin-left: 0.5rem;
   }
-  .badge.new { background: rgba(61,186,126,0.18); color: var(--green); border: 1px solid rgba(61,186,126,0.35); }
   .badge.flat { background: rgba(91,159,212,0.15); color: var(--accent); border: 1px solid rgba(91,159,212,0.3); }
-  .badge.watch { background: rgba(139,155,180,0.12); color: var(--muted); border: 1px solid var(--border); }
   .kpi-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -112,7 +98,6 @@
     font-size: 1.05rem;
     font-weight: 600;
   }
-  .kpi .value.low { color: var(--low); }
   .kpi .sub {
     font-size: 0.75rem;
     color: var(--muted);
@@ -127,66 +112,17 @@
   }
   .facts dt { color: var(--muted); }
   .facts dd { margin: 0; font-weight: 500; }
-  .section-title {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--muted);
-    margin: 1.25rem 0 0.5rem;
-    font-weight: 600;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.8rem;
-  }
-  th, td {
-    text-align: left;
-    padding: 0.4rem 0.5rem;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-  th {
-    color: var(--muted);
-    font-weight: 550;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  td.num, th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
-  tr.new-low td { background: rgba(61,186,126,0.08); }
-  tr.new-low td.num { color: var(--green); font-weight: 600; }
   .note {
     font-size: 0.8rem;
     color: var(--muted);
     margin-top: 0.75rem;
   }
-  .note a { color: var(--accent); }
-  .screens {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-  }
-  .screens a {
-    color: var(--accent);
-    font-size: 0.82rem;
-    text-decoration: none;
-  }
-  .screens a:hover { text-decoration: underline; }
   footer {
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid var(--border);
     color: var(--muted);
     font-size: 0.8rem;
-  }
-  footer code {
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    background: var(--surface);
-    padding: 0.1rem 0.35rem;
-    border-radius: 4px;
   }
   @media (max-width: 519px) {
     body { padding: 1.1rem 0.9rem 2rem; }
@@ -198,21 +134,6 @@
     .badge { margin: 0.35rem 0 0; display: inline-block; }
   }
   .wrap, .card, .kpi, .facts dt, .facts dd, .note, footer { min-width: 0; overflow-wrap: break-word; }
-  @media print {
-    :root {
-      --bg: #fff;
-      --surface: #fff;
-      --surface2: #f4f6f9;
-      --border: #ccd3de;
-      --text: #1a1f2a;
-      --muted: #5a6578;
-      --accent: #1a6bb5;
-      --green: #1a7a4c;
-    }
-    body { padding: 0.75rem; background: #fff; color: #1a1f2a; }
-    .card { break-inside: avoid; box-shadow: none; }
-    a { color: #1a6bb5; }
-  }
 </style>
 </head>
 <body>
@@ -220,7 +141,7 @@
     <header>
       <h1>Siberia plague watch</h1>
       <p class="sub">Shelekhov / Irkutsk region · public reporting only · not a case bulletin</p>
-      <p>As of <strong>Tue Oct 6, 2026</strong>, 2:54pm ET</p>
+      <p>As of <strong>Wed Oct 7, 2026</strong>, 8:28am ET</p>
     </header>
 
     <section class="card" id="siberia">
@@ -248,27 +169,27 @@
         <div class="kpi">
           <div class="label">Contacts observed</div>
           <div class="value">~197</div>
-          <div class="sub">60% released from observation · rest still watched</div>
+          <div class="sub">&gt;90% observation ended · Russia told WHO 100%</div>
         </div>
       </div>
 
       <dl class="facts">
-        <dt>As of</dt><dd>2026-10-06, 2:54pm ET</dd>
+        <dt>As of</dt><dd>2026-10-07, 8:28am ET</dd>
         <dt>Generation</dt><dd>Index only. No confirmed secondary plague case or community transmission.</dd>
         <dt>Death date</dt><dd>Outlets split Oct 1 vs the night of Oct 2.</dd>
-        <dt>Diagnosis conflict</dt><dd>No new official diagnosis. Rospotrebnadzor’s public line for the lab worker is still “pneumonia of unspecified etiology,” with no work-linked microorganisms and no lab accident. New this pull: Russia’s official reply to WHO’s IHR request says no case of this dangerous disease has been recorded in Irkutsk, and no plague or other high-threat pathogen was found among close contacts. WHO says it is still awaiting confirmation of which pneumonia-causing pathogen led to the death, so the cause of death remains officially unnamed. That reply is not a clearance. Plague reports remain in conflict with the official pneumonia line: Buryatia’s governor first said plague, then softened to “possibly” plague; earlier media described a lab-linked broken-tube account around Sep 25; Meduza / Lyudi Baikala (Oct 6) report pro-government outlets pulling plague coverage. This page still counts 1 index death under contested etiology. It does not treat the death as a cleared case or as a confirmed plague case count.</dd>
+        <dt>Diagnosis conflict</dt><dd>No new official diagnosis. Rospotrebnadzor’s public line for the lab worker is still “pneumonia of unspecified etiology,” with no work-linked microorganisms and no lab accident (two biosafety commissions found none). Cause of death remains officially unnamed. New this pull: WHO’s Director-General asked Russia to clarify the cause of the severe pneumonia, the pathogen that prompted public-health measures, and media reports of a second institute employee with pneumonia of undetermined cause. That second-employee report is unverified and unconfirmed by Russia; Rospotrebnadzor says no infectious illness among institute staff in 10 days. It is logged here as an open question, not a case. Plague reports remain in conflict with the official pneumonia line: Buryatia’s governor first said plague, then softened to “possibly” plague; earlier media described a lab-linked broken-tube account around Sep 25; Russia’s IHR reply told WHO the illness first looked like a typical acute respiratory viral infection and gave no named pathogen. This page still counts 1 index death under contested etiology. It does not treat the death as a cleared case or as a confirmed plague case count.</dd>
         <dt>Exposure</dt><dd>Earlier reporting described a lab-linked exposure around Sep 25, 2026, at the Irkutsk Anti-Plague Institute. The index patient is the lab worker.</dd>
-        <dt>Contacts</dt><dd>Baseline still about 197 / nearly 200 (no new absolute headcount). Observation has ended for 60% of contacts; the rest stay under observation. Contact screen unchanged: 2 COVID-19 and 2 rhinovirus cases, no other pathogens. WHO says all contacts were identified and none has shown symptoms to date. No secondary case.</dd>
-        <dt>Geography</dt><dd>Unchanged ring: Shelekhov / Irkutsk. Shelekhov district hospital inpatient quarantine restrictions remain in place; the polyclinic is open. Rospotrebnadzor says regional acute respiratory illness runs about 16,000 cases a week, with no rise in two weeks and 12.6% below the epidemic threshold. No Buryatia cases. No export or second-country case.</dd>
-        <dt>Official bulletins</dt><dd>New this pull — WHO’s first tiered risk assessment (Geneva briefing, Tue Oct 6): risk moderate to low for Irkutsk, low for Russia as a whole, and very low for the WHO European region. WHO timeline: picked up media reports Oct 2, contacted Russia under the IHR Oct 3; it says it has not received a formal IHR notification. Still no DON or PHEIC step. Also new: ECDC (to CNBC, Oct 6) says the plague suspicion “is not yet confirmed,” notes little Irkutsk–EU travel, and reports no additional cases or sustained person-to-person transmission. US State Department repeats its call for Russia to share information quickly and openly. Still no CDC case bulletin.</dd>
-        <dt>Ground signal</dt><dd>No hit. No dated, placed overflow photo or local post was found for a named Shelekhov or Irkutsk hospital, morgue, or crematorium. Local coverage describes the Shelekhov hospital as quarantined in some wards but otherwise operating, and Irkutsk hospitals as normal. The Shelekhov local news Telegram web preview returned an empty response this pull, so live local Telegram was not reachable; VK was not checked.</dd>
+        <dt>Contacts</dt><dd>Baseline still about 197 / nearly 200 (no new absolute headcount). New this pull: Rospotrebnadzor (Wed Oct 7) says medical observation has ended for more than 90% of contacts (up from 60% on Oct 6), with no infection-linked health problems, and nearly 5,000 lab tests found no dangerous pathogens; it says it is wrapping up measures in Irkutsk. Conflict noted: Russia’s note to WHO said monitoring for 100% of contacts had concluded. Contact screen previously reported 2 COVID-19 and 2 rhinovirus cases among observed contacts. No secondary case.</dd>
+        <dt>Geography</dt><dd>Unchanged ring: Shelekhov / Irkutsk. Rospotrebnadzor calls Irkutsk, Shelekhov, and the region calm with no risks for local residents. Neighbor border precautions are now three countries: Kazakhstan, Kyrgyzstan, and Uzbekistan newly added. These are precautions, not export cases. No Buryatia cases. No second-country case.</dd>
+        <dt>Official bulletins</dt><dd>WHO’s Oct 6 tiered risk assessment is unchanged: moderate to low for Irkutsk, low for Russia, very low for the WHO European region. New this pull: the US State Department sent Russia a formal diplomatic note requesting more information. A Kremlin spokesman again told the public to rely on Rospotrebnadzor. Russia has not asked for WHO experts to deploy. Still no formal IHR notification, DON, or PHEIC step. Still no CDC case bulletin.</dd>
+        <dt>Ground signal</dt><dd>No hit. Local Telegram web previews were reachable this pull. The Shelekhov local news channel loaded, but its newest post is dated 2026-10-02 with no overflow content. An Irkutsk city channel loaded through 2026-10-07 and showed only a border-control item. Keyword scan found nothing qualifying for hospital, morgue, or funeral overflow. Open-web search also found none. VK was not checked.</dd>
       </dl>
 
       <p class="note">Level rules, locked 2026-10-03. WATCH: lab-linked index only, contacts isolated, no confirmed secondary case. ELEVATED: a confirmed secondary case, a test-positive symptomatic contact, a new city outside the ring, an export case, official ongoing person-to-person pneumonic spread, or credible treatment failure. THRESHOLD: cases outside the traced ring and (a second country or an unlinked major city, or rising confirmed cases for 3 or more days, or a WHO PHEIC, or community chains past one generation).</p>
     </section>
   </div>
   <footer>
-    <p>Updated 2026-10-06, 2:54pm ET, from public reporting: UN Geneva newsroom / WHO briefing, RTE, NBC News, The Hill (Reuters), CNBC (WHO, ECDC, State), Vedomosti, NGS24 / IrCity, VZ (TASS), Realnoe Vremya, Gazeta, IrCity, Miranews, Meduza (2026-10-06); 1-Line (2026-10-05). Local Telegram preview empty this pull. Not a medical or official bulletin. Re-check primary sources before acting on it.</p>
+    <p>Updated 2026-10-07, 8:28am ET, from public reporting: Vedomosti (Rospotrebnadzor), India Today, SBS News, Hurriyet (AFP), dpa, Mathrubhumi, NBC News, PBS / AP, Healthbeat, DNYUZ (NYT), Globe and Mail, IrCity Telegram (2026-10-06/07). Not a medical or official bulletin. Re-check primary sources before acting on it.</p>
   </footer>
 </body>
 </html>
